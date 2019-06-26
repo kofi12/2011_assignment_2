@@ -4,8 +4,8 @@ import java.util.Iterator;
 
 public class NodePositionalList<E> implements PositionalList<E>, Iterable<Position<E>>
 {
-    Dnode<E> head;
-    Dnode<E> tail;
+    Position<Dnode> head;
+    Position<Dnode> tail;
     private int size;
 
     @Override
