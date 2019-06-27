@@ -8,18 +8,27 @@ public class NodePositionalList<E> implements PositionalList<E>, Iterable<Positi
     Dnode<E> tail;
     private int size;
 
+    /**
+     *
+     */
     @Override
     public int size()
     {
         return size;
     }
 
+    /**
+     *
+     */
     @Override
     public boolean isEmpty()
     {
         return size == 0;
     }
 
+    /**
+     *
+     */
     @Override
     public Position<E> first()
     {
@@ -28,6 +37,9 @@ public class NodePositionalList<E> implements PositionalList<E>, Iterable<Positi
         return head;
     }
 
+    /**
+     *
+     */
     @Override
     public Position<E> last()
     {
@@ -36,6 +48,9 @@ public class NodePositionalList<E> implements PositionalList<E>, Iterable<Positi
         return tail;
     }
 
+    /**
+     *
+     */
     @Override
     public Position<E> before(Position<E> p) throws IllegalArgumentException
     {
@@ -48,54 +63,96 @@ public class NodePositionalList<E> implements PositionalList<E>, Iterable<Positi
         return null;
     }
 
+    /**
+     *
+     */
     @Override
     public Position<E> after(Position<E> p) throws IllegalArgumentException
     {
         return null;
     }
 
+    /**
+     *
+     */
     @Override
     public Position<E> addFirst(E e)
     {
         return null;
     }
 
+    /**
+     *
+     */
     @Override
     public Position<E> addLast(E e)
     {
         return null;
     }
 
+    /**
+     *
+     */
     @Override
     public Position<E> addBefore(Position<E> p, E e) throws IllegalArgumentException
     {
-        return null;
+    	/*
+    	 * add before this position, means p.getPrev() is this node
+    	 * make a node
+    	 * node.prev is p.prev
+    	 * node.next is p
+    	 * p.prev is node
+    	 */
+    	
+    	Dnode<E> node = new Dnode<>(e);
+    	try { // Check if p is actually a Node
+        	node.setPrev( ((Dnode<E>)(p)).getPrev() );
+    	} catch ( IllegalArgumentException iae ) {
+    		iae.getStackTrace(); // Not sure if this is enough
+    	}
+
+        return node;
     }
 
+    /**
+     *
+     */
     @Override
     public Position<E> addAfter(Position<E> p, E e) throws IllegalArgumentException
     {
         return null;
     }
 
+    /**
+     *
+     */
     @Override
     public E set(Position<E> p, E e) throws IllegalArgumentException
     {
         return null;
     }
 
+    /**
+     *
+     */
     @Override
     public E remove(Position<E> p) throws IllegalArgumentException
     {
         return null;
     }
 
+    /**
+     *
+     */
     @Override
     public Iterator<Position<E>> iterator()
     {
         return null;
     }
 
+    /**
+     * @return
+     */
     public Iterable<Position<E>> positions()
     {
         return null;
