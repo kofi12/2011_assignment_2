@@ -17,9 +17,11 @@ public class Dnode<E> implements Position<E>
     private Dnode<E> next;
 
     /**
-     * @param e
-     * @param p
-     * @param n
+     * Constructor for Dnode.
+     * 
+     * @param e Some element
+     * @param p The previous node
+     * @param n The next node
      */
     public Dnode(E e, Dnode<E> p, Dnode<E> n)
     {
@@ -29,7 +31,7 @@ public class Dnode<E> implements Position<E>
     }
 
     /**
-     * 
+     * Constructor for Dnode. Makes a Dnode with null elements and null prev and next links.
      */
     public Dnode()
     {

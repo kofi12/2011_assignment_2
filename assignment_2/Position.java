@@ -4,8 +4,8 @@ public interface Position<E>
 {
 
     /**
-     * asfdalsdkfj;
-     * @return
+     * Returns the element stored in position.
+     * @return element stored at this position.
      * @throws IllegalStateException
      */
     E getElement() throws IllegalStateException;
