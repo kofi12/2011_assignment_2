@@ -4,8 +4,8 @@ import java.util.Iterator;
 
 public class NodePositionalList<E> implements PositionalList<E>, Iterable<Position<E>>
 {
-    Position<Dnode> head;
-    Position<Dnode> tail;
+    Dnode<E> head;
+    Dnode<E> tail;
     private int size;
 
     @Override
@@ -39,19 +39,13 @@ public class NodePositionalList<E> implements PositionalList<E>, Iterable<Positi
     @Override
     public Position<E> before(Position<E> p) throws IllegalArgumentException
     {
-        Dnode<E> curr = head;
-        while((curr = curr.getNext()) != null)
-        {
-
-        }
-
-        return null;
+        return p.getPrev();
     }
 
     @Override
     public Position<E> after(Position<E> p) throws IllegalArgumentException
     {
-        return null;
+        return p.getNext();
     }
 
     @Override
@@ -69,7 +63,9 @@ public class NodePositionalList<E> implements PositionalList<E>, Iterable<Positi
     @Override
     public Position<E> addBefore(Position<E> p, E e) throws IllegalArgumentException
     {
-        return null;
+        
+    	
+    	return null;
     }
 
     @Override
