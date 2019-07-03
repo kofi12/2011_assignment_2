@@ -40,13 +40,13 @@ public class NodePositionalList<E> implements PositionalList<E>, Iterable<E>
     @Override
     public Position<E> before(Position<E> p) throws IllegalArgumentException
     {
-        return p.getPrev();
+        return null;
     }
 
     @Override
     public Position<E> after(Position<E> p) throws IllegalArgumentException
     {
-        return p.getNext();
+        return null;
     }
 
     @Override
@@ -88,36 +88,36 @@ public class NodePositionalList<E> implements PositionalList<E>, Iterable<E>
     }
 
     @Override
-    public Iterator<Position<E>> iterator()
+    public Iterator<E> iterator()
     {
         return null;
     }
 
-    public Iterable<Position<E>> positions()
+    public Iterable<E> positions()
     {
         return null;
     }
     
-    private DNode<E> validate(Position<E p>) throws IllegalArgumentException
+    private DNode<E> validate(Position<E> p) throws IllegalArgumentException
     {
     	if(!(p instanceof DNode)) throw new IllegalArgumentException("Invalid p");
-    	Dnode<E> node = (DNode<E>) p;
+    	DNode<E> node = (DNode<E>) p;
     	if(node.getNext() == null)
     		throw new IllegalArgumentException("p is no longer in the list");
     	return node;
     }
     
-    private Position<E> position(Node<E> node)
+    private Position<E> position(DNode<E> node)
     {
     	if(node == head || node == tail)
     		return null;
     	return node;
     }
     
-    protected Position<E> checkPosition(Position<E> v) throws InvalidPositionException
+    protected Position<E> checkPosition(Position<E> v)
     {
     	if(v == null || !(v instanceof DNode))
-    		throw new InvalidPositionException("The position is invalid");
+    		System.out.println("The position is invalid");
     	return v;
     }
 }
