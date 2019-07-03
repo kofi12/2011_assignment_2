@@ -24,78 +24,90 @@ public class NodePositionalList<E> implements PositionalList<E>, Iterable<E>
     @Override
     public Position<E> first()
     {
-        if(isEmpty())
-            return null;
-        return head;
+        return position(head.getNext());
     }
 
     @Override
     public Position<E> last()
     {
-        if(isEmpty())
-            return null;
-        return tail;
+
+        return position(tail.getPrev());
     }
 
     @Override
     public Position<E> before(Position<E> p) throws IllegalArgumentException
     {
-        return null;
+        DNode<E> newNode = validate(p);
+        return position(newNode.getPrev());
     }
 
     @Override
     public Position<E> after(Position<E> p) throws IllegalArgumentException
     {
-        return null;
+        DNode<E> newNode = validate(p);
+        return position(newNode.getNext());
     }
 
     @Override
     public Position<E> addFirst(E e)
     {
-        return null;
+        return addBetween(e, head, head.getNext());
     }
 
     @Override
     public Position<E> addLast(E e)
     {
-        return null;
+        return addBetween(e, tail.getPrev(), tail);
     }
 
     @Override
     public Position<E> addBefore(Position<E> p, E e) throws IllegalArgumentException
     {
-        
-    	
-    	return null;
+        DNode<E> node = validate(p);
+    	return addBetween(e, node.getPrev(), node);
     }
 
     @Override
     public Position<E> addAfter(Position<E> p, E e) throws IllegalArgumentException
     {
-        return null;
+        DNode<E> node = validate(p);
+        return addBetween(e, node, node.getNext());
     }
 
     @Override
     public E set(Position<E> p, E e) throws IllegalArgumentException
     {
-        return null;
+        DNode<E> node = validate(p);
+        E answer = node.getElement();
+        node.setElement(e);
+        return answer;
     }
 
     @Override
     public E remove(Position<E> p) throws IllegalArgumentException
     {
-        return null;
+        DNode<E> node = validate(p);
+        DNode<E> predecessor = node.getPrev();
+        DNode<E> successor = node.getNext();
+        predecessor.setNext(successor);
+        successor.setPrev(predecessor);
+        size--;
+        E answer = node.getElement();
+        node.setElement(null);
+        node.setPrev(null);
+        node.setNext(null);
+        return answer;
     }
 
     @Override
     public Iterator<E> iterator()
     {
-        return null;
+        return new ElementIterator<E>();
     }
 
     public Iterable<E> positions()
     {
-        return null;
+        return new NodePositionalList<E>();
     }
     
     private DNode<E> validate(Position<E> p) throws IllegalArgumentException
@@ -120,4 +132,14 @@ public class NodePositionalList<E> implements PositionalList<E>, Iterable<E>
     		System.out.println("The position is invalid");
     	return v;
     }
+
+    private Position<E> addBetween(E e, DNode<E> pred, DNode<E> succ)
+    {
+        DNode<E> newest = new DNode<E>(e, pred, succ);
+        pred.setNext(newest);
+        succ.setPrev(newest);
+        size++;
+        return newest;
+    }
+    
 }
