@@ -3,24 +3,24 @@ package assignment_2;
 import java.util.Iterator;
 
 public class NodePositionalList<E> implements PositionalList<E>, Iterable<Position<E>> {
-	Dnode<E> head;
-	Dnode<E> tail;
+	DNode<E> head;
+	DNode<E> tail;
 	private int size;
 
-	// Replacing Dnode.java
-	// ---------------- nested Dnode class ----------------
-	private static class Dnode<E> implements Position<E> {
+	// Replacing DNode.java
+	// ---------------- nested DNode class ----------------
+	private static class DNode<E> implements Position<E> {
 
 		private E element;
 		// reference to the element stored at this node
 
-		private Dnode<E> prev;
+		private DNode<E> prev;
 		// reference to the previous node in the list
 
-		private Dnode<E> next;
+		private DNode<E> next;
 		// reference to the subsequent node in the list
 
-		public Dnode(E e, Dnode<E> p, Dnode<E> n) {
+		public DNode(E e, DNode<E> p, DNode<E> n) {
 			element = e;
 			prev = p;
 			next = n;
@@ -33,11 +33,11 @@ public class NodePositionalList<E> implements PositionalList<E>, Iterable<Positi
 			return element;
 		}
 
-		public Dnode<E> getPrev() {
+		public DNode<E> getPrev() {
 			return prev;
 		}
 
-		public Dnode<E> getNext() {
+		public DNode<E> getNext() {
 			return next;
 		}
 
@@ -45,14 +45,14 @@ public class NodePositionalList<E> implements PositionalList<E>, Iterable<Positi
 			element = e;
 		}
 
-		public void setPrev(Dnode<E> p) {
+		public void setPrev(DNode<E> p) {
 			prev = p;
 		}
 
-		public void setNext(Dnode<E> n) {
+		public void setNext(DNode<E> n) {
 			next = n;
 		}
-	} // ----------- end of nested Dnode class -----------
+	} // ----------- end of nested DNode class -----------
 
 	/**
 	 *
@@ -95,7 +95,7 @@ public class NodePositionalList<E> implements PositionalList<E>, Iterable<Positi
 	 */
 	@Override
 	public Position<E> before(Position<E> p) throws IllegalArgumentException {
-		Dnode<E> curr = head;
+		DNode<E> curr = head;
 		while ((curr = curr.getNext()) != null) {
 
 		}
@@ -137,10 +137,10 @@ public class NodePositionalList<E> implements PositionalList<E>, Iterable<Positi
 		 * node.prev is p.prev node.next is p p.prev is node
 		 */
 
-		Dnode<E> node = new Dnode<>(e, null, null);
-		try { // Check if p is actually a Dnode
+		DNode<E> node = new DNode<>(e, null, null);
+		try { // Check if p is actually a DNode
 //    		checkPosition(p);
-			node.setPrev(((Dnode<E>) (p)).getPrev());
+			node.setPrev(((DNode<E>) (p)).getPrev());
 		} catch (IllegalArgumentException iae) {
 			iae.getStackTrace(); // Not sure if this is enough
 		}

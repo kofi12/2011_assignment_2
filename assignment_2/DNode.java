@@ -10,20 +10,20 @@ package assignment_2;
  *
  * @param <E>
  */
-public class Dnode<E> implements Position<E>
+public class DNode<E> implements Position<E>
 {
     private E element;
-    private Dnode<E> prev;
-    private Dnode<E> next;
+    private DNode<E> prev;
+    private DNode<E> next;
 
     /**
-     * Constructor for Dnode.
+     * Constructor for DNode.
      * 
      * @param e Some element
      * @param p The previous node
      * @param n The next node
      */
-    public Dnode(E e, Dnode<E> p, Dnode<E> n)
+    public DNode(E e, DNode<E> p, DNode<E> n)
     {
         element = e;
         prev = p;
@@ -31,9 +31,9 @@ public class Dnode<E> implements Position<E>
     }
 
     /**
-     * Constructor for Dnode. Makes a Dnode with null elements and null prev and next links.
+     * Constructor for DNode. Makes a DNode with null elements and null prev and next links.
      */
-    public Dnode()
+    public DNode()
     {
     	this(null, null, null);
     }
@@ -41,14 +41,14 @@ public class Dnode<E> implements Position<E>
     /**
      * @param e
      */
-    public Dnode( E e ) {
+    public DNode( E e ) {
     	this( e, null, null);
     }
     
     /**
      * @return
      */
-    public Dnode<E> getPrev()
+    public DNode<E> getPrev()
     {
         return prev;
     }
@@ -56,7 +56,7 @@ public class Dnode<E> implements Position<E>
     /**
      * @param prev
      */
-    public void setPrev(Dnode<E> prev)
+    public void setPrev(DNode<E> prev)
     {
         this.prev = prev;
     }
@@ -64,7 +64,7 @@ public class Dnode<E> implements Position<E>
     /**
      * @return
      */
-    public Dnode<E> getNext()
+    public DNode<E> getNext()
     {
         return next;
     }
@@ -72,7 +72,7 @@ public class Dnode<E> implements Position<E>
     /**
      * @param next
      */
-    public void setNext(Dnode<E> next)
+    public void setNext(DNode<E> next)
     {
         this.next = next;
     }
