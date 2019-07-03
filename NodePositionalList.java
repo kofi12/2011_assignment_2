@@ -2,10 +2,11 @@ package assignment_2;
 
 import java.util.Iterator;
 
-public class NodePositionalList<E> implements PositionalList<E>, Iterable<Position<E>>
+public class NodePositionalList<E> implements PositionalList<E>, Iterable<E>
 {
-    Dnode<E> head;
-    Dnode<E> tail;
+    
+	private DNode<E> head; 
+    private DNode<E> tail;
     private int size;
 
     @Override
@@ -95,5 +96,28 @@ public class NodePositionalList<E> implements PositionalList<E>, Iterable<Positi
     public Iterable<Position<E>> positions()
     {
         return null;
+    }
+    
+    private DNode<E> validate(Position<E p>) throws IllegalArgumentException
+    {
+    	if(!(p instanceof DNode)) throw new IllegalArgumentException("Invalid p");
+    	Dnode<E> node = (DNode<E>) p;
+    	if(node.getNext() == null)
+    		throw new IllegalArgumentException("p is no longer in the list");
+    	return node;
+    }
+    
+    private Position<E> position(Node<E> node)
+    {
+    	if(node == head || node == tail)
+    		return null;
+    	return node;
+    }
+    
+    protected Position<E> checkPosition(Position<E> v) throws InvalidPositionException
+    {
+    	if(v == null || !(v instanceof DNode))
+    		throw new InvalidPositionException("The position is invalid");
+    	return v;
     }
 }

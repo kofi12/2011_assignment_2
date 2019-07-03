@@ -1,41 +1,41 @@
 package assignment_2;
 
-public class Dnode<E> implements Position<E>
+public class DNode<E> implements Position<E>
 {
     private E element;
-    private Dnode<E> prev;
-    private Dnode<E> next;
+    private DNode<E> prev;
+    private DNode<E> next;
 
-    public Dnode(E e, Dnode<E> p, Dnode<E> n)
+    public DNode(E e, DNode<E> p, DNode<E> n)
     {
         element = e;
         prev = p;
         next = n;
     }
 
-    public Dnode()
+    public DNode()
     {
         element = null;
         prev = null;
         next = null;
     }
 
-    public Dnode<E> getPrev()
+    public DNode<E> getPrev()
     {
         return prev;
     }
 
-    public void setPrev(Dnode<E> prev)
+    public void setPrev(DNode<E> prev)
     {
         this.prev = prev;
     }
 
-    public Dnode<E> getNext()
+    public DNode<E> getNext()
     {
         return next;
     }
 
-    public void setNext(Dnode<E> next)
+    public void setNext(DNode<E> next)
     {
         this.next = next;
     }
