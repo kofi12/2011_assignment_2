@@ -103,7 +103,7 @@ public class NodePositionalList<E> implements PositionalList<E>, Iterable<E>
     @Override
     public Iterator<E> iterator()
     {
-        return null; // TODO
+        return new ElementIterator(); // TODO
     }
 
     private DNode<E> validate(Position<E> p) throws IllegalArgumentException
@@ -153,7 +153,7 @@ public class NodePositionalList<E> implements PositionalList<E>, Iterable<E>
         {
             if (cursor == null) throw new NoSuchElementException("nothing left");
             recent = cursor;
-            cursor = after(cursor);
+            cursor =  after(cursor);
             return recent;
         }
 
@@ -162,7 +162,7 @@ public class NodePositionalList<E> implements PositionalList<E>, Iterable<E>
 
         }
     }
-
+    
     private class PositionIterable implements Iterable<Position<E>>
     {
         public Iterator<Position<E>> iterator()
@@ -170,12 +170,13 @@ public class NodePositionalList<E> implements PositionalList<E>, Iterable<E>
             return new PositionIterator();
         }
     }
-
+    
     public Iterable<Position<E>> positions()
     {
         return new PositionIterable();
     }
-    /*private class ElementIterator<E> implements Iterator<E>
+    
+    private class ElementIterator implements Iterator<E>
     {
         Iterator<Position<E>> posIterator = new PositionIterator();
 
@@ -188,7 +189,5 @@ public class NodePositionalList<E> implements PositionalList<E>, Iterable<E>
         {
             return posIterator.next().getElement();
         }
-
-    }*/
-
+    }
 }

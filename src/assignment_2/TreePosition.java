@@ -4,9 +4,9 @@ public interface TreePosition<E> extends Position<E>
 {
     public void setElement(E e);
 
-    public PositionList<Position<E>> getChildren();
+    public PositionalList<Position<E>> getChildren();
 
-    public void setChildren(PositionList<Position<E>> c);
+    public void setChildren(PositionalList<Position<E>> c);
 
     public TreePosition<E> getParent();
 
