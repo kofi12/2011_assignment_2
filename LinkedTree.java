@@ -103,4 +103,57 @@ public class LinkedTree<E> implements Tree<E>
         for(Position<E> c : children(p))
             preorderSubtree(c, snapshot);
     }
+
+    /* TODO
+        change this to custom exception from the assignment
+     */
+    public Position<E> addRoot(E e) throws IllegalStateException
+    {
+        if(!isEmpty())
+            throw new IllegalStateException("this tree is not empty");
+        root = createNode(e, null, null);
+        size = 1;
+        return root;
+    }
+
+    protected TreePosition<E> createNode(E element, TreePosition<E> parent, PositionalList<Position<E>> children)
+    {
+        return new TreeNode<E>(element, parent, children);
+    }
+
+
+    //not sure if this is correct!!!!
+    public void swapElements(Position<E> v, Position<E> w)
+    {
+        TreePosition<E> tempV = checkPosition(v);
+        TreePosition<E> tempW = checkPosition(w);
+        tempV.setElement(w.getElement());
+        tempW.setElement(v.getElement());
+    }
+
+
+    // needs to be repurposed for use in toString() method!!!
+    public static <E> void parenthesize(Tree<E> T, Position<E> p)
+    {
+        System.out.println(p.getElement());
+        if(T.isInternal(p))
+        {
+            boolean firstTime = true;
+            for(Position<E> c : T.children(p))
+            {
+                System.out.println((firstTime ? " (" : ", "));
+                firstTime = false;
+                parenthesize(T, c);
+            }
+            System.out.println(")");
+        }
+    }
+
+
+    // TODO
+    @Override
+    public String toString()
+    {
+        return "LinkedTree{}";
+    }
 }

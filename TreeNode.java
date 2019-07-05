@@ -6,6 +6,13 @@ public class TreeNode<E> implements TreePosition<E>
     private TreePosition<E> parent;
     private PositionalList<Position<E>> children;
 
+    public TreeNode(E e, TreePosition<E> p, PositionalList<Position<E>> c)
+    {
+        element = e;
+        parent = p;
+        children = c;
+    }
+
     @Override
     public void setElement(E e)
     {
