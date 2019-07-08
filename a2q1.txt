@@ -11,7 +11,7 @@ with a larger input size.
 -isEmpty() runs in theta(1) time because in the implementation, an equality
 statement would be run to see if our size integer value would be equal to 0
 or not. Larger input sizes does not increase the running time of this operation,
-therefore it is theta-1 time.
+therefore it is constant time.
 
 -min() runs in theta(1) time because in the implementation, the root / first
 entry is always the smallest value, therefore we would return the element
@@ -22,19 +22,24 @@ THETA(LOG N)
 -insert(k, x) runs in theta(log N) time because in the implementation, we
 add the newest element to the next most available slot, but to preserve
 our priority queue property, we would upheap the element upwards, which
-runs in log-n time.
+runs in log N time.
 
 -removeMin() runs in theta(log N) time because in the implementation, the root
 element / element at index 0 is the smallest value so we would remove that element
 and replace it with the most available element (last index), but to preserse
 our priority queue property, we would need to downheap the element, which runs
-in log-n time.
+in log N time.
+
+-find(k) runs in theta(log N) time because you would have to recursively traverse
+through the structure to find the key K, however, each call will effectively eliminate
+approximately half of the key entries with each call due to the sorting property, therefore
+the running time will be log N.
 
 -remove(e) runs in theta(log N) time because we would need to traverse through
 our priority queue to find the element; our implementation of PQDictionary is
 done with a min heap, so we would be able to traverse through our heap in log-n
 time to find the element and remove it, replacing it with the most available element,
-and downheaping it if necessary, which also runs in log-n time.
+and downheaping it if necessary, which will run in log N time.
 
 THETA(N)
 
