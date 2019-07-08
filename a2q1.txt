@@ -1,0 +1,47 @@
+EECS2011 assignment 2 question 1
+
+THETA(1)
+
+-size() runs in theta(1) time because in the implementation, there is an
+integer that would increment everytime an entry is added and decrement
+everytime an entry is removed. Therefore we would only be returning this
+integer value; the running time of returning an integer does not increase
+with a larger input size.
+
+-isEmpty() runs in theta(1) time because in the implementation, an equality
+statement would be run to see if our size integer value would be equal to 0
+or not. Larger input sizes does not increase the running time of this operation,
+therefore it is theta-1 time.
+
+-min() runs in theta(1) time because in the implementation, the root / first
+entry is always the smallest value, therefore we would return the element
+at index 0, therefore larger input sizes would not affect the running time.
+
+THETA(LOG N)
+
+-insert(k, x) runs in theta(log N) time because in the implementation, we
+add the newest element to the next most available slot, but to preserve
+our priority queue property, we would upheap the element upwards, which
+runs in log-n time.
+
+-removeMin() runs in theta(log N) time because in the implementation, the root
+element / element at index 0 is the smallest value so we would remove that element
+and replace it with the most available element (last index), but to preserse
+our priority queue property, we would need to downheap the element, which runs
+in log-n time.
+
+-remove(e) runs in theta(log N) time because we would need to traverse through
+our priority queue to find the element; our implementation of PQDictionary is
+done with a min heap, so we would be able to traverse through our heap in log-n
+time to find the element and remove it, replacing it with the most available element,
+and downheaping it if necessary, which also runs in log-n time.
+
+THETA(N)
+
+-findAll(k) runs in theta(N) time because to find all elements with the inputted key,
+we would have to traverse through all elements in our priority queue to find all keys K.
+Because we need to access all elements, this runs in N time - the larger the input size,
+the longer the running time is (linearly).
+
+-entries() runs in theta(N) time because to find an entry, worst case scenario we would
+need to search the entire data structure, which runs in N time.
