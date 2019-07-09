@@ -1,4 +1,4 @@
-package assignment_2;
+package a2;
 
 public abstract class AbstractTree<E> implements Tree<E>
 {
