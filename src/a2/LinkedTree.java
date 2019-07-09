@@ -30,7 +30,12 @@ public class LinkedTree<E> implements Tree<E>
     @Override
     public Iterable<Position<E>> children(Position<E> p) throws IllegalArgumentException
     {
-        return children.positions();
+    	//TODO Fix this, positions are wrong, not casting right the right thing
+//    	if (p instanceof TreeNode) {
+//    		PositionalList<E> kids = ((TreeNode<E>) p).getChildren();
+//    		return kids.positions();
+//    	}
+    	return children.positions();
     }
 
     @Override
