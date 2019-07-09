@@ -6,9 +6,15 @@ import java.util.NoSuchElementException;
 public class NodePositionalList<E> implements PositionalList<E>, Iterable<E>
 {
     
-	private DNode<E> head; 
+	private DNode<E> head;
     private DNode<E> tail;
     private int size;
+    
+    public NodePositionalList() {
+    	head = new DNode<E>();
+    	tail = new DNode<E>(null, head, null);
+    	head.setNext(tail);
+    }
 
     @Override
     public int size()

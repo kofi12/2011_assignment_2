@@ -146,7 +146,7 @@ public class LinkedTree<E> implements Tree<E>
     {
         if(!isEmpty())
             throw new IllegalStateException("this tree is not empty");
-        root = createNode(e, null, null);
+        root = createNode(e, null, new NodePositionalList());
         size = 1;
         return root;
     }
@@ -154,7 +154,7 @@ public class LinkedTree<E> implements Tree<E>
     protected TreePosition<E> createNode(E element, TreePosition<E> parent, PositionalList<Position<E>> children)
     {
     	size++;
-        return new TreeNode<E>(element, parent, children);
+    	return new TreeNode<E>(element, parent, children);
     }
 
 

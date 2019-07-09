@@ -10,6 +10,10 @@ public class TreeNode<E> implements TreePosition<E>
     {
         element = e;
         parent = p;
+        if ( ! (p == null) ) {
+        	System.out.println("hi");
+        	parent.getChildren().addLast(this);
+        }
         children = c;
     }
 
