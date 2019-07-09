@@ -6,34 +6,58 @@ import java.util.NoSuchElementException;
 public class NodePositionalList<E> implements PositionalList<E>, Iterable<E>
 {
     
+	/**
+	 * 
+	 */
 	private DNode<E> head;
+    /**
+     * 
+     */
     private DNode<E> tail;
+    /**
+     * 
+     */
     private int size;
     
+    /**
+     * 
+     */
     public NodePositionalList() {
     	head = new DNode<E>();
     	tail = new DNode<E>(null, head, null);
     	head.setNext(tail);
     }
 
+    /**
+     *
+     */
     @Override
     public int size()
     {
         return size;
     }
 
+    /**
+     *
+     */
     @Override
     public boolean isEmpty()
     {
         return size == 0;
     }
 
+    /**
+     *
+     */
     @Override
     public Position<E> first()
     {
         return position(head.getNext());
     }
 
+    /**
+     *
+     */
     @Override
     public Position<E> last()
     {
@@ -41,6 +65,9 @@ public class NodePositionalList<E> implements PositionalList<E>, Iterable<E>
         return position(tail.getPrev());
     }
 
+    /**
+     *
+     */
     @Override
     public Position<E> before(Position<E> p) throws IllegalArgumentException
     {
@@ -48,6 +75,9 @@ public class NodePositionalList<E> implements PositionalList<E>, Iterable<E>
         return position(newNode.getPrev());
     }
 
+    /**
+     *
+     */
     @Override
     public Position<E> after(Position<E> p) throws IllegalArgumentException
     {
@@ -55,18 +85,27 @@ public class NodePositionalList<E> implements PositionalList<E>, Iterable<E>
         return position(newNode.getNext());
     }
 
+    /**
+     *
+     */
     @Override
     public Position<E> addFirst(E e)
     {
         return addBetween(e, head, head.getNext());
     }
 
+    /**
+     *
+     */
     @Override
     public Position<E> addLast(E e)
     {
         return addBetween(e, tail.getPrev(), tail);
     }
 
+    /**
+     *
+     */
     @Override
     public Position<E> addBefore(Position<E> p, E e) throws IllegalArgumentException
     {
@@ -74,6 +113,9 @@ public class NodePositionalList<E> implements PositionalList<E>, Iterable<E>
     	return addBetween(e, node.getPrev(), node);
     }
 
+    /**
+     *
+     */
     @Override
     public Position<E> addAfter(Position<E> p, E e) throws IllegalArgumentException
     {
@@ -81,6 +123,9 @@ public class NodePositionalList<E> implements PositionalList<E>, Iterable<E>
         return addBetween(e, node, node.getNext());
     }
 
+    /**
+     *
+     */
     @Override
     public E set(Position<E> p, E e) throws IllegalArgumentException
     {
@@ -90,6 +135,9 @@ public class NodePositionalList<E> implements PositionalList<E>, Iterable<E>
         return answer;
     }
 
+    /**
+     *
+     */
     @Override
     public E remove(Position<E> p) throws IllegalArgumentException
     {
@@ -106,12 +154,21 @@ public class NodePositionalList<E> implements PositionalList<E>, Iterable<E>
         return answer;
     }
 
+    /**
+     *
+     */
     @Override
     public Iterator<E> iterator()
     {
         return new ElementIterator(); // TODO
     }
 
+    // Private/Protected Methods
+    /**
+     * @param p
+     * @return
+     * @throws IllegalArgumentException
+     */
     private DNode<E> validate(Position<E> p) throws IllegalArgumentException
     {
     	if(!(p instanceof DNode)) throw new IllegalArgumentException("Invalid p");
@@ -121,13 +178,21 @@ public class NodePositionalList<E> implements PositionalList<E>, Iterable<E>
     	return node;
     }
     
-    private Position<E> position(DNode<E> node)
+    /**
+     * @param node
+     * @return
+     */
+    private Position<E> position(Position<E> node)
     {
     	if(node == head || node == tail)
     		return null;
     	return node;
     }
     
+    /**
+     * @param v
+     * @return
+     */
     protected Position<E> checkPosition(Position<E> v)
     {
     	if(v == null || !(v instanceof DNode))
@@ -135,6 +200,12 @@ public class NodePositionalList<E> implements PositionalList<E>, Iterable<E>
     	return v;
     }
 
+    /**
+     * @param e
+     * @param pred
+     * @param succ
+     * @return
+     */
     private Position<E> addBetween(E e, DNode<E> pred, DNode<E> succ)
     {
         DNode<E> newest = new DNode<E>(e, pred, succ);
@@ -144,17 +215,35 @@ public class NodePositionalList<E> implements PositionalList<E>, Iterable<E>
         return newest;
     }
 
+    
+    // Private Classes
+    /**
+     * 
+     *
+     */
     private class PositionIterator implements Iterator<Position<E>>
     {
+        /**
+         * 
+         */
         private Position<E> cursor = first();
+        /**
+         * 
+         */
         private Position<E> recent = null;
 
+        /**
+         *
+         */
         @Override
         public boolean hasNext()
         {
             return cursor != null;
         }
 
+        /**
+         *
+         */
         public Position<E> next() throws NoSuchElementException
         {
             if (cursor == null) throw new NoSuchElementException("nothing left");
@@ -163,12 +252,19 @@ public class NodePositionalList<E> implements PositionalList<E>, Iterable<E>
             return recent;
         }
 
+        /**
+         *
+         */
         public void remove() throws UnsupportedOperationException
         {
 
         }
     }
     
+    /**
+     * @author
+     *
+     */
     private class PositionIterable implements Iterable<Position<E>>
     {
         public Iterator<Position<E>> iterator()
@@ -177,11 +273,18 @@ public class NodePositionalList<E> implements PositionalList<E>, Iterable<E>
         }
     }
     
+    /**
+     * @return
+     */
     public Iterable<Position<E>> positions()
     {
         return new PositionIterable();
     }
     
+    /**
+     * @author 
+     *
+     */
     private class ElementIterator implements Iterator<E>
     {
         Iterator<Position<E>> posIterator = new PositionIterator();
