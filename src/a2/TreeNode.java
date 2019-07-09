@@ -1,4 +1,4 @@
-package assignment_2;
+package a2;
 
 public class TreeNode<E> implements TreePosition<E>
 {
